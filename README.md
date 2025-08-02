@@ -1,114 +1,107 @@
-# 🧪 Developer Application Test: Habit Tracker Lite (Online Only)
+# Habit Tracker
 
-Welcome! This is a short technical test to help us evaluate your skills in Kotlin, Retrofit, and general Android app structure. You are provided with a prebuilt UI and your task is to bring it to life by implementing the backend logic.
+A simple Android app built with Kotlin and Retrofit to track habits using a mock API. Users can view a list of habits, add new habits, mark habits as done, and sync data with the server.
 
----
+## Features
+- **List Habits**: Displays habits with name, description, and last completed date in a RecyclerView.
+- **Add Habits**: Allows users to add new habits with a name and description.
+- **Mark as Done**: Updates the last completed date for a habit.
+- **Sync Habits**: Refreshes the habit list from the server.
 
-## 📱 Overview
+## Prerequisites
+- **Android Studio**: Version 2024.1.1 or later.
+- **JDK**: Version 11.
+- **mockapi.io Account**: For the mock backend API.
+- **Git**: To clone the repository.
 
-You will build a small **Habit Tracker** app that allows users to:
+## Setup Instructions
 
-- View a list of habits
-- Add a new habit
-- Mark a habit as "Done Today"
-- Sync new or updated habits with a remote API
+### 1. Clone the Repository
+Clone the project to your local machine:
 
-> ❗ This version of the test **does not** require offline capability or RoomDB caching. It is entirely online-only.
-
----
-
-## 🧰 What’s Provided
-
-The starter Android Studio project includes:
-
-- Screens already created in XML:
-  - **Habit List**
-  - **Add Habit**
-  - **Sync Button**
-- Navigation already set up
-- Empty classes/interfaces for:
-  - `ViewModel`, `Repository`, `RetrofitService`, and `Data Models`
-- Sample mock JSON file in `/assets/mock_habits.json` (optional)
-
----
-
-## 🎯 Your Tasks
-
-### 1. Retrofit API Integration
-- Create a Retrofit interface to handle the following:
-  - `GET /habits` – Fetch all habits
-  - `POST /habits` – Add a new habit
-  - `PUT /habits/{id}` – Mark a habit as done
-- You may use any public mock API (e.g., https://reqres.in, https://mockapi.io) or simulate a local JSON source using an `Interceptor`.
-
----
-
-### 2. Habit List Screen
-- Display habits fetched from the API
-- Each habit item should show:
-  - Name
-  - Description
-  - Last Completed Date
-  - A "Mark as Done" button
-
----
-
-### 3. Add Habit Screen
-- Implement logic to:
-  - Capture name and description
-  - Submit data using `POST /habits`
-  - Return to the list and refresh it
-
----
-
-### 4. Mark Habit as Done
-- On button click:
-  - Send a `PUT /habits/{id}` request to update the `lastCompletedDate` to today
-  - Update the UI accordingly
-
----
-
-## 🧪 Suggested Habit Model
-
-```kotlin
-data class Habit(
-    val id: Int,
-    val name: String,
-    val description: String,
-    val lastCompletedDate: String? // Format: yyyy-MM-dd
-)
-
+```bash
+git clone <your-repository-url>
 ```
-## 🚫 Not Required
 
-You do **not** need to implement:
+Replace `<your-repository-url>` with the GitHub repository URL.
 
-- RoomDB or offline data persistence  
-- User authentication  
-- Dark mode or advanced UI polish  
-- Testing (though you're welcome to include it)
+### 2. Set Up mockapi.io
+1. Sign up or log in at [mockapi.io](https://mockapi.io/).
+2. Create a new project (e.g., "HabitTrackerAPI").
+3. Add a `habits` resource with the following schema:
+   ```json
+   {
+     "id": "number",
+     "name": "string",
+     "description": "string",
+     "lastCompletedDate": "string|null"
+   }
+   ```
+4. (Optional) Add sample data via the dashboard, e.g.:
+   ```json
+   {
+     "id": 1,
+     "name": "Drink Water",
+     "description": "Drink 8 glasses daily",
+     "lastCompletedDate": "2025-08-01"
+   }
+   ```
+5. Copy the project URL (e.g., `https://123456789.mockapi.io/`).
 
----
+### 3. Configure the Project
+1. Open the project in **Android Studio**.
+2. Update the `BASE_URL` in `app/src/main/java/com/nicholas/application_test_hive/network/RetrofitClient.kt` with your mockapi.io project URL:
+   ```kotlin
+   private const val BASE_URL = "https://<your-project-id>.mockapi.io/"
+   ```
+   Replace `<your-project-id>` with your mockapi.io project ID.
+3. Sync the project:
+   - Click **Sync Project with Gradle Files** in Android Studio.
+   - Or run:
+     ```bash
+     ./gradlew sync
+     ```
 
-## 📦 Submission Instructions
+### 4. Build the Project
+1. Clean and rebuild the project:
+   - In Android Studio: **Build > Clean Project**, then **Build > Rebuild Project**.
+   - Or run:
+     ```bash
+     ./gradlew clean build
+     ```
+2. Ensure no build errors occur. The `build.gradle.kts` includes all necessary dependencies (Retrofit, Gson, OkHttp, Material, CardView).
 
-- Submit your code as a **GitHub repository** 
-- Include a short `README.md` explaining how to build and run the app
+### 5. Run the App
+1. Connect an Android device or start an emulator (API level 24 or higher).
+2. Run the app:
+   - Click **Run > Run 'app'** in Android Studio.
+   - Or run:
+     ```bash
+     ./gradlew installDebug
+     ```
+3. Verify functionality:
+   - **Main Screen**: Displays a list of habits from mockapi.io.
+   - **Add Habit**: Tap "Add New Habit" to enter a name and description, then save.
+   - **Mark as Done**: Tap "Mark as Done" on a habit to update its completion date.
+   - **Sync**: Tap "Sync Habits" to refresh the list.
 
-> 🕒 **Deadline: Tuesday @ 12:00 PM**
+## Dependencies
+- **Retrofit**: For API communication.
+- **Gson**: For JSON parsing.
+- **OkHttp**: For HTTP requests with logging.
+- **Material Components**: For UI elements.
+- **CardView**: For habit item layouts.
 
----
+## Troubleshooting
+- **Build Errors**: Ensure all dependencies are synced and JDK 11 is configured.
+- **API Issues**: Verify the mockapi.io URL and test endpoints (e.g., `https://<your-project-id>.mockapi.io/habits`) in a browser or Postman.
+- **No Data**: Add sample habits in mockapi.io or check Logcat for Retrofit errors (filter by `OkHttp`).
+- **Contact**: For issues, refer to the project repository or contact the developer.
 
-## ✅ Evaluation Criteria
-
-| Area                         | Weight |
-|------------------------------|--------|
-| Retrofit API integration     | 40%    |
-| List & form UI functionality | 30%    |
-| Code structure & readability | 20%    |
-| Extras / effort shown        | 10%    |
-
----
-
-🎯 **Good luck, and have fun building!** 
-
+## Project Structure
+- `models/`: Data class for `Habit`.
+- `network/`: Retrofit setup and API interface.
+- `repository/`: Handles API calls.
+- `viewmodel/`: Manages UI data.
+- `adapters/`: RecyclerView adapter for habits.
+- `res/layout/`: XML layouts for activities and habit items.
