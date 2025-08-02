@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="@drawable/gradient_space_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,43 +16,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add New Habit"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             android:gravity="center"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="24dp"
+            android:shadowColor="#00E5FF"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="8" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.App.TextInputLayout"
             android:hint="Habit Name"
-            app:boxBackgroundMode="outline">
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editHabitName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B0BEC5" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.App.TextInputLayout"
             android:hint="Description"
-            android:layout_marginTop="12dp"
-            app:boxBackgroundMode="outline">
+            android:layout_marginTop="16dp"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editHabitDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B0BEC5" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveHabit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save Habit"
-            android:backgroundTint="#6200EA"
-            android:textColor="#FFFFFF"
+            style="@style/Widget.App.Button"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>

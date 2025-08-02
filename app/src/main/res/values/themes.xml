@@ -1,9 +1,55 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ApplicationTestHIVE" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">#00E5FF</item>
+        <item name="colorPrimaryVariant">#0288D1</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!-- Secondary colors -->
+        <item name="colorSecondary">#FF4081</item>
+        <item name="colorSecondaryVariant">#F50057</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <!-- Background -->
+        <item name="android:windowBackground">@drawable/gradient_space_background</item>
+        <!-- Text and fonts -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#B0BEC5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.App.Headline6</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.App.Body1</item>
+        <!-- Material components -->
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="buttonStyle">@style/Widget.App.Button</item>
     </style>
 
-    <style name="Theme.ApplicationTestHIVE" parent="Base.Theme.ApplicationTestHIVE" />
+    <!-- Custom text appearances -->
+    <style name="TextAppearance.App.Headline6" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="fontWeight">700</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="TextAppearance.App.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#B0BEC5</item>
+    </style>
+
+    <!-- Custom TextInputLayout style -->
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@drawable/text_input_stroke</item>
+        <item name="hintTextColor">#00E5FF</item>
+        <item name="android:textColorHint">#B0BEC5</item>
+        <item name="boxBackgroundColor">#263238</item>
+    </style>
+
+    <!-- Custom Button style -->
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/button_gradient</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:stateListAnimator">@animator/button_elevation</item>
+    </style>
 </resources>

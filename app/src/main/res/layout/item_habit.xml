@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="#263238">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,31 +18,32 @@
             android:id="@+id/textHabitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:shadowColor="#00E5FF"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4" />
 
         <TextView
             android:id="@+id/textHabitDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textAppearance="?attr/textAppearanceBody1"
             android:layout_marginTop="4dp" />
 
         <TextView
             android:id="@+id/textLastCompleted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"
-            android:textColor="#757575" />
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:layout_marginTop="4dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMarkDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mark as Done"
-            android:backgroundTint="#0288D1"
-            android:textColor="#FFFFFF"
+            style="@style/Widget.App.Button"
             android:layout_marginTop="8dp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,6 +1,10 @@
 package com.nicholas.application_test_hive
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,12 +18,16 @@ import com.nicholas.application_test_hive.viewmodel.HabitViewModel
 class AddHabitActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddHabitBinding
     private lateinit var viewModel: HabitViewModel
+    private lateinit var vibrator: Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityAddHabitBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize Vibrator
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.scrollAddHabit) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -30,6 +38,7 @@ class AddHabitActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
 
         binding.btnSaveHabit.setOnClickListener {
+            performHapticFeedback()
             val name = binding.editHabitName.text.toString().trim()
             val description = binding.editHabitDescription.text.toString().trim()
 
@@ -39,7 +48,7 @@ class AddHabitActivity : AppCompatActivity() {
             }
 
             val habit = Habit(
-                id = 0, // API will assign the custom ID here
+                id = 0, // API will assign ID
                 name = name,
                 description = description,
                 lastCompletedDate = null
@@ -55,6 +64,15 @@ class AddHabitActivity : AppCompatActivity() {
         viewModel.habits.observe(this) {
             // On successful add, navigate back
             finish()
+        }
+    }
+
+    private fun performHapticFeedback() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            @Suppress("DEPRECATION")
+            vibrator.vibrate(50)
         }
     }
 }
